@@ -23,8 +23,9 @@ def load_img_to_frame(img, frame, width = 10, height = 7):
     img_edited_label = Label(frame, image=img_edited_local)
     img_edited_label.image = img_edited_local
     img_edited_label.place(x = 0, y = 0)
-    globalVar.childEditedFrame = img_edited_label
-    globalVar.childEditedFrame.bind("<Button-1>", lambda event: fill_by_mouse_position(event, frame))
+    if(frame.winfo_name() == "editedFrame"):
+        globalVar.childEditedFrame = img_edited_label
+        globalVar.childEditedFrame.bind("<Button-1>", lambda event: fill_by_mouse_position(event, frame))
     
 # Create a new button in optionFrame to open an image in originalFrame
 def open_image(originalFrame, editedFrame):

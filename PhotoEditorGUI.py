@@ -112,13 +112,13 @@ def open_morphologicalProcess():
 #=========FUNCTION===============
 
 #=========CREATE WIDGET==========
-originalFrame = Frame(window, bg='white', width=10*UNIT, height=7*UNIT)
+originalFrame = Frame(window, name="originalFrame", bg='white', width=10*UNIT, height=7*UNIT)
 originalFrame.place(x=0.25*UNIT, y=0)
 
-editedFrame = Frame(window, bg='white', width=10*UNIT, height=7*UNIT)
+editedFrame = Frame(window, name="editedFrame", bg='white', width=10*UNIT, height=7*UNIT)
 editedFrame.place(x=10.75*UNIT, y=0)
 
-optionFrame = Frame(window, bg='cyan', width=WIDTH, height=5*UNIT)
+optionFrame = Frame(window, name="optionFrame", bg='cyan', width=WIDTH, height=5*UNIT)
 optionFrame.place(x=0, y=7.25*UNIT)
 
 # Create a new button in optionFrame to open an image in originalFrame
