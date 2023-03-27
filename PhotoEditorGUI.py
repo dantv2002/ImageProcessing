@@ -47,7 +47,7 @@ def print_mouse_position(event):
     print(f"Mouse position: x={x}, y={y}")
     return x, y   
 
-def changeToFill():
+def changeToFillMode():
     globalVar.isFill = not globalVar.isFill
     print(globalVar.isFill)
     if globalVar.isFill:
@@ -201,7 +201,7 @@ scale_ksize_dilation_erosion.set(0)
 button_getBoundaryExtraction = Button(optionFrame, text='Boundary Extraction', command=lambda: get_BoundaryExtraction(editedFrame), width=btnW, height=btnH)
 
 # Create a button to region filling
-button_regionFilling = Button(optionFrame, text='Fill', command=changeToFill, width=btnW, height=btnH)
+button_regionFilling = Button(optionFrame, text='Fill', command=changeToFillMode, width=btnW, height=btnH)
 
 
 # Create a new button to apply the image
