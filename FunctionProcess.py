@@ -17,10 +17,7 @@ def load_img_to_frame(img, frame, width = 10, height = 7):
     for widget in frame.winfo_children():
         widget.destroy()
     pil_image = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    globalVar.original_width, globalVar.original_height = pil_image.size
     pil_image = pil_image.resize((width * UNIT, height * UNIT))
-    globalVar.scale_factor_width = globalVar.original_width / (width * UNIT)
-    globalVar.scale_factor_height = globalVar.original_height / (height * UNIT)
     # Convert the PIL image to tkinter format
     img_edited_local = ImageTk.PhotoImage(pil_image)
     img_edited_label = Label(frame, image=img_edited_local)
@@ -42,7 +39,12 @@ def open_image(originalFrame, editedFrame):
 
         # Load the new image
         globalVar.img = cv2.imread(globalVar.file_path)
-        load_img_to_frame(globalVar.img, originalFrame, 9, 7)
+        globalVar.original_height, globalVar.original_width, _ = globalVar.img.shape
+        globalVar.scale_factor_width = globalVar.original_width / (10 * UNIT)
+        globalVar.scale_factor_height = globalVar.original_height / (7 * UNIT)
+        print( globalVar.scale_factor_height)
+        print( globalVar.scale_factor_width )
+        load_img_to_frame(globalVar.img, originalFrame)
         #set img_origin
         globalVar.img_original = globalVar.img
         # Load to edited image
@@ -173,14 +175,13 @@ def get_BoundaryExtraction(editedFrame):
 
 def fill_by_mouse_position(event, frame):
     x, y = print_mouse_position(event)
-    print( globalVar.scale_factor_height)
-    print( globalVar.scale_factor_width )
     onClickRegionFilling(frame, x, y)
     
 def onClickRegionFilling(editedFrame, x, y):
     if not globalVar.isFill:
         return
-    y = (int) (y / globalVar.scale_factor_height)
-    x = (int) (x / globalVar.scale_factor_width)
+    y = (int) (y * globalVar.scale_factor_width)
+    x = (int) (x * globalVar.scale_factor_height)
+    print("Original x: ", x * globalVar.scale_factor_width , " y: ", y * globalVar.scale_factor_height)
     globalVar.img_edited = regionFilling(globalVar.img_edited, x, y)
     load_img_to_frame(globalVar.img_edited, editedFrame)

@@ -24,7 +24,7 @@ window.maxsize(WIDTH, HEIGHT)
 # Create a new button to reset the image
 def reset_image():
     globalVar.img = globalVar.img_original.copy()
-    load_img_to_frame(globalVar.img, originalFrame, 9, 7)
+    load_img_to_frame(globalVar.img, originalFrame)
     globalVar.img_edited = globalVar.img_original.copy()
     load_img_to_frame(globalVar.img_edited, editedFrame)
     scale_logTransformations.set(1)
@@ -36,7 +36,7 @@ def reset_image():
     
 def apply_image():
     globalVar.img = globalVar.img_edited.copy()
-    load_img_to_frame(globalVar.img, originalFrame, 9, 7)
+    load_img_to_frame(globalVar.img, originalFrame)
 
 def undo_image():
     globalVar.img_edited = globalVar.img.copy()
@@ -112,11 +112,11 @@ def open_morphologicalProcess():
 #=========FUNCTION===============
 
 #=========CREATE WIDGET==========
-originalFrame = Frame(window, bg='white', width=9*UNIT, height=7*UNIT)
+originalFrame = Frame(window, bg='white', width=10*UNIT, height=7*UNIT)
 originalFrame.place(x=0.25*UNIT, y=0)
 
 editedFrame = Frame(window, bg='white', width=10*UNIT, height=7*UNIT)
-editedFrame.place(x=9.75*UNIT, y=0)
+editedFrame.place(x=10.75*UNIT, y=0)
 
 optionFrame = Frame(window, bg='cyan', width=WIDTH, height=5*UNIT)
 optionFrame.place(x=0, y=7.25*UNIT)

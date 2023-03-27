@@ -1,7 +1,7 @@
 #Config
 UNIT = 50
 HEIGHT = 12*UNIT
-WIDTH = 20*UNIT
+WIDTH = 21*UNIT
 btnW = 20
 btnH = 1
 FRONT = ("", 13)
