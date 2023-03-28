@@ -303,6 +303,6 @@ def regionFilling(img, x, y, ksize = 5):
         X1=cv2.dilate(X0,B,iterations=1)&A
     Label[X1==1]=1
     Label = (A - Label) * 255
-    Label = cv2.convertScaleAbs(Label)
-    Label = cv2.cvtColor(Label, cv2.COLOR_GRAY2RGB)
+    # Label = cv2.convertScaleAbs(Label)
+    Label = cv2.cvtColor(np.array(Label, dtype=np.uint8) , cv2.COLOR_GRAY2RGB)
     return Label
